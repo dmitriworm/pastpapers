@@ -1,0 +1,122 @@
+[
+  {
+    "id": "001",
+    "course_name": "Engineering Mathematics I",
+    "school": "Engineering",
+    "year": "2024",
+    "semester": "Semester 1",
+    "test_type": "CAT 1",
+    "has_marking_scheme": true,
+    "download_url": "papers/engineering/eng-math-1-cat1-2024.pdf"
+  },
+  {
+    "id": "002",
+    "course_name": "Fluid Mechanics",
+    "school": "Engineering",
+    "year": "2024",
+    "semester": "Semester 2",
+    "test_type": "Main Exam",
+    "has_marking_scheme": true,
+    "download_url": "papers/engineering/fluid-mechanics-main-2024.pdf"
+  },
+  {
+    "id": "003",
+    "course_name": "Human Anatomy I",
+    "school": "Medicine",
+    "year": "2024",
+    "semester": "Semester 1",
+    "test_type": "CAT 2",
+    "has_marking_scheme": true,
+    "download_url": "papers/medicine/anatomy-1-cat2-2024.pdf"
+  },
+  {
+    "id": "004",
+    "course_name": "Pharmacology Basics",
+    "school": "Medicine",
+    "year": "2023",
+    "semester": "Semester 2",
+    "test_type": "Supplementary",
+    "has_marking_scheme": false,
+    "download_url": "papers/medicine/pharmacology-supp-2023.pdf"
+  },
+  {
+    "id": "005",
+    "course_name": "Curriculum Development",
+    "school": "Education",
+    "year": "2024",
+    "semester": "Semester 1",
+    "test_type": "Main Exam",
+    "has_marking_scheme": true,
+    "download_url": "papers/education/curriculum-dev-main-2024.pdf"
+  },
+  {
+    "id": "006",
+    "course_name": "Educational Psychology",
+    "school": "Education",
+    "year": "2023",
+    "semester": "Semester 2",
+    "test_type": "Retake",
+    "has_marking_scheme": false,
+    "download_url": "papers/education/edu-psych-retake-2023.pdf"
+  },
+  {
+    "id": "007",
+    "course_name": "Cell Biology",
+    "school": "Biological Sciences",
+    "year": "2024",
+    "semester": "Semester 1",
+    "test_type": "CAT 1",
+    "has_marking_scheme": true,
+    "download_url": "papers/biological-sciences/cell-bio-cat1-2024.pdf"
+  },
+  {
+    "id": "008",
+    "course_name": "Genetics & Molecular Biology",
+    "school": "Biological Sciences",
+    "year": "2024",
+    "semester": "Semester 2",
+    "test_type": "Main Exam",
+    "has_marking_scheme": true,
+    "download_url": "papers/biological-sciences/genetics-main-2024.pdf"
+  },
+  {
+    "id": "009",
+    "course_name": "Data Structures & Algorithms",
+    "school": "Technology & Computing",
+    "year": "2024",
+    "semester": "Semester 1",
+    "test_type": "CAT 2",
+    "has_marking_scheme": true,
+    "download_url": "papers/technology/dsa-cat2-2024.pdf"
+  },
+  {
+    "id": "010",
+    "course_name": "Database Management Systems",
+    "school": "Technology & Computing",
+    "year": "2024",
+    "semester": "Semester 2",
+    "test_type": "Main Exam",
+    "has_marking_scheme": true,
+    "download_url": "papers/technology/dbms-main-2024.pdf"
+  },
+  {
+    "id": "011",
+    "course_name": "Soil Science & Fertility",
+    "school": "Agricultural",
+    "year": "2024",
+    "semester": "Semester 1",
+    "test_type": "CAT 1",
+    "has_marking_scheme": true,
+    "download_url": "papers/agricultural/soil-science-cat1-2024.pdf"
+  },
+  {
+    "id": "012",
+    "course_name": "Crop Production Systems",
+    "school": "Agricultural",
+    "year": "2023",
+    "semester": "Semester 2",
+    "test_type": "Supplementary",
+    "has_marking_scheme": false,
+    "download_url": "papers/agricultural/crop-production-supp-2023.pdf"
+  }
+]
