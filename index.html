@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free past papers, CATs, main exams, supplementaries and retakes for Kenyan university students. Download with marking schemes." />
+  <meta name="keywords" content="past papers Kenya, university CATs, exam papers Kenya, revision papers, marking schemes" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>PastPapers KE — Kenya University Exam Hub</title>
+
+  <!-- ============================================================
+    📌 TAILWIND CSS — loaded via CDN, no build step needed
+  ============================================================ -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- ============================================================
+    🔔 HILLTOPADS POP-UNDER / TRACKING SCRIPT
+    → PASTE YOUR HILLTOPADS SCRIPT TAG HERE ⬇️
+    Example:
+    <script src="https://your-hilltopads-script-url.js"></script>
+    → DO NOT paste ad scripts below this comment block.
+       Keep them here in <head> as HilltopAds requires.
+  ============================================================ -->
+  <!-- HILLTOPADS_SCRIPT_PLACEHOLDER -->
+
+  <style>
+    /* ── Google Font: Space Grotesk for techy feel ── */
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-deep:    #060d1a;
+      --bg-card:    #0d1f35;
+      --bg-card2:   #0a1628;
+      --emerald:    #10b981;
+      --emerald-dim:#064e3b;
+      --cyan:       #06b6d4;
+      --amber:      #f59e0b;
+      --rose:       #f43f5e;
+      --violet:     #8b5cf6;
+      --slate-text: #94a3b8;
+      --white-dim:  #e2e8f0;
+      --border:     rgba(16,185,129,0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background-color: var(--bg-deep);
+      color: var(--white-dim);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── SPIDER WEB CANVAS BACKGROUND ── */
+    #web-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.18;
+    }
+
+    /* All content sits above canvas */
+    #app { position: relative; z-index: 1; }
+
+    /* ── HEADER ── */
+    #site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(6, 13, 26, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--emerald);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .logo-sub {
+      font-size: 0.6rem;
+      color: var(--slate-text);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .paper-count-badge {
+      background: var(--emerald-dim);
+      color: var(--emerald);
+      font-size: 0.65rem;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 3px 8px;
+      border-radius: 20px;
+      border: 1px solid rgba(16,185,129,0.3);
+    }
+
+    /* ── SEARCH ── */
+    .search-wrap {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 16px 16px 0;
+    }
+
+    .search-box {
+      position: relative;
+      width: 100%;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--emerald);
+      width: 18px;
+      height: 18px;
+      pointer-events: none;
+    }
+
+    #search-input {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 14px 14px 44px;
+      color: var(--white-dim);
+      font-size: 1rem;
+      font-family: 'Space Grotesk', sans-serif;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+    }
+
+    #search-input::placeholder { color: #475569; }
+
+    #search-input:focus {
+      border-color: rgba(16,185,129,0.5);
+      box-shadow: 0 0 0 3px rgba(16,185,129,0.08);
+    }
+
+    .search-clear {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--slate-text);
+      cursor: pointer;
+      padding: 4px;
+      display: none;
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    /* ── FILTER TABS ── */
+    .filter-wrap {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 12px 16px 0;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .filter-wrap::-webkit-scrollbar { display: none; }
+
+    .filter-tab {
+      flex-shrink: 0;
+      padding: 7px 14px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      border: 1px solid rgba(148,163,184,0.2);
+      background: transparent;
+      color: var(--slate-text);
+      cursor: pointer;
+      transition: all 0.18s;
+      white-space: nowrap;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .filter-tab:active { transform: scale(0.96); }
+
+    .filter-tab.active {
+      background: var(--emerald);
+      color: #022c22;
+      border-color: var(--emerald);
+      font-weight: 600;
+    }
+
+    /* School filter row */
+    .school-wrap {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 8px 16px 0;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .school-wrap::-webkit-scrollbar { display: none; }
+
+    .school-tab {
+      flex-shrink: 0;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      border: 1px solid transparent;
+      background: rgba(255,255,255,0.04);
+      color: #64748b;
+      cursor: pointer;
+      transition: all 0.18s;
+      white-space: nowrap;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .school-tab:active { transform: scale(0.96); }
+    .school-tab.active {
+      color: var(--white-dim);
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.15);
+    }
+
+    /* ── RESULTS INFO BAR ── */
+    .results-bar {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 12px 16px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .results-count {
+      font-size: 0.72rem;
+      color: var(--slate-text);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .results-count span { color: var(--emerald); }
+
+    /* ── CARDS GRID ── */
+    .cards-grid {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 12px 16px 100px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 500px) {
+      .cards-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ── PAPER CARD ── */
+    .paper-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: transform 0.15s, border-color 0.15s;
+      -webkit-tap-highlight-color: transparent;
+      animation: fadeSlideUp 0.25s ease both;
+    }
+
+    .paper-card:active { transform: scale(0.98); }
+
+    .paper-card:hover {
+      border-color: rgba(16,185,129,0.25);
+      transform: translateY(-1px);
+    }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .school-badge {
+      font-size: 0.6rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* School badge colors */
+    .badge-engineering  { background: rgba(6,182,212,0.15);  color: #06b6d4; border: 1px solid rgba(6,182,212,0.25); }
+    .badge-medicine     { background: rgba(244,63,94,0.15);  color: #f43f5e; border: 1px solid rgba(244,63,94,0.25); }
+    .badge-education    { background: rgba(245,158,11,0.15); color: #f59e0b; border: 1px solid rgba(245,158,11,0.25); }
+    .badge-biological   { background: rgba(16,185,129,0.15); color: #10b981; border: 1px solid rgba(16,185,129,0.25); }
+    .badge-technology   { background: rgba(139,92,246,0.15); color: #8b5cf6; border: 1px solid rgba(139,92,246,0.25); }
+    .badge-agricultural { background: rgba(132,204,22,0.15); color: #84cc16; border: 1px solid rgba(132,204,22,0.25); }
+
+    .type-pill {
+      font-size: 0.58rem;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.05);
+      color: var(--slate-text);
+      border: 1px solid rgba(255,255,255,0.08);
+      white-space: nowrap;
+    }
+
+    .type-pill.cat    { color: #fb923c; border-color: rgba(251,146,60,0.3); background: rgba(251,146,60,0.08); }
+    .type-pill.main   { color: #f43f5e; border-color: rgba(244,63,94,0.3);  background: rgba(244,63,94,0.08); }
+    .type-pill.supp   { color: #8b5cf6; border-color: rgba(139,92,246,0.3); background: rgba(139,92,246,0.08); }
+    .type-pill.retake { color: #f59e0b; border-color: rgba(245,158,11,0.3); background: rgba(245,158,11,0.08); }
+
+    .course-name {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--white-dim);
+      line-height: 1.35;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .meta-item {
+      font-size: 0.68rem;
+      color: #475569;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .meta-dot {
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: #334155;
+      flex-shrink: 0;
+    }
+
+    .scheme-tag {
+      font-size: 0.6rem;
+      color: var(--emerald);
+      background: rgba(16,185,129,0.08);
+      border: 1px solid rgba(16,185,129,0.2);
+      border-radius: 4px;
+      padding: 1px 6px;
+    }
+
+    /* ── GET PDF BUTTON ── */
+    .get-pdf-btn {
+      width: 100%;
+      padding: 10px;
+      border-radius: 9px;
+      border: none;
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #022c22;
+      font-size: 0.82rem;
+      font-weight: 700;
+      font-family: 'Space Grotesk', sans-serif;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: opacity 0.15s, transform 0.1s;
+      -webkit-tap-highlight-color: transparent;
+      text-decoration: none;
+      margin-top: auto;
+    }
+
+    .get-pdf-btn:active { transform: scale(0.97); opacity: 0.9; }
+
+    /* ── LOADING STATE ── */
+    .loading-wrap {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 0 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .spinner {
+      width: 32px; height: 32px;
+      border: 2px solid rgba(16,185,129,0.2);
+      border-top-color: var(--emerald);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .loading-text {
+      font-size: 0.8rem;
+      color: var(--slate-text);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ── EMPTY STATE ── */
+    .empty-state {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 40px 16px;
+      text-align: center;
+      display: none;
+    }
+
+    .empty-icon { font-size: 3rem; margin-bottom: 12px; opacity: 0.4; }
+
+    .empty-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white-dim);
+      margin-bottom: 6px;
+    }
+
+    .empty-sub {
+      font-size: 0.8rem;
+      color: var(--slate-text);
+      line-height: 1.5;
+    }
+
+    /* ── AD BANNER SLOTS ── */
+    .ad-banner {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    .ad-inner {
+      border-radius: 12px;
+      border: 1px dashed rgba(148,163,184,0.15);
+      padding: 14px;
+      text-align: center;
+      position: relative;
+      background: rgba(255,255,255,0.02);
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ad-label {
+      position: absolute;
+      top: 5px; right: 8px;
+      font-size: 0.55rem;
+      color: #334155;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 40;
+      background: rgba(6,13,26,0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(16,185,129,0.1);
+      padding: 8px 16px;
+      text-align: center;
+    }
+
+    .footer-text {
+      font-size: 0.65rem;
+      color: #334155;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .footer-text a { color: #475569; text-decoration: none; }
+
+    /* ── SCROLL TO TOP ── */
+    #scroll-top {
+      position: fixed;
+      bottom: 48px;
+      right: 16px;
+      z-index: 45;
+      width: 38px; height: 38px;
+      background: var(--emerald);
+      color: #022c22;
+      border: none;
+      border-radius: 50%;
+      font-size: 1rem;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(16,185,129,0.3);
+      transition: opacity 0.2s;
+    }
+
+    #scroll-top.show { display: flex; }
+  </style>
+</head>
+
+<body>
+
+<!-- ── SPIDER WEB ANIMATED BACKGROUND ── -->
+<canvas id="web-canvas" aria-hidden="true"></canvas>
+
+<div id="app">
+
+  <!-- ══════════════════════════════════════
+    STICKY HEADER
+  ══════════════════════════════════════ -->
+  <header id="site-header">
+    <div class="header-inner">
+      <div>
+        <div class="logo-text">📄 PastPapers<span style="color:#94a3b8">.</span>KE</div>
+        <div class="logo-sub">Kenya University Exam Hub</div>
+      </div>
+      <div class="paper-count-badge" id="total-badge">— papers</div>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════
+    SEARCH BAR — 400ms debounce
+  ══════════════════════════════════════ -->
+  <div class="search-wrap">
+    <div class="search-box">
+      <svg class="search-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input
+        type="search"
+        id="search-input"
+        placeholder="Search course or school…"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        inputmode="search"
+      />
+      <button class="search-clear" id="search-clear" aria-label="Clear search">✕</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+    FILTER TABS — Test Type
+  ══════════════════════════════════════ -->
+  <div class="filter-wrap" role="tablist" aria-label="Filter by test type">
+    <button class="filter-tab active" data-filter="all"     role="tab" aria-selected="true">All Papers</button>
+    <button class="filter-tab"        data-filter="cat"     role="tab" aria-selected="false">CATs</button>
+    <button class="filter-tab"        data-filter="main"    role="tab" aria-selected="false">Main Exams</button>
+    <button class="filter-tab"        data-filter="supp"    role="tab" aria-selected="false">Supplementary</button>
+    <button class="filter-tab"        data-filter="retake"  role="tab" aria-selected="false">Retakes</button>
+  </div>
+
+  <!-- School Filter Row -->
+  <div class="school-wrap" role="tablist" aria-label="Filter by school">
+    <button class="school-tab active" data-school="all">All Schools</button>
+    <button class="school-tab" data-school="Engineering">Engineering</button>
+    <button class="school-tab" data-school="Medicine">Medicine</button>
+    <button class="school-tab" data-school="Education">Education</button>
+    <button class="school-tab" data-school="Biological Sciences">Bio Sciences</button>
+    <button class="school-tab" data-school="Technology & Computing">Technology</button>
+    <button class="school-tab" data-school="Agricultural">Agricultural</button>
+  </div>
+
+  <!-- ══════════════════════════════════════
+    RESULTS INFO BAR
+  ══════════════════════════════════════ -->
+  <div class="results-bar">
+    <div class="results-count" id="results-count">Loading...</div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+    AD BANNER 1 — appears 5s after page load
+    REPLACE the inner div content with your
+    Adsterra banner script/tag when ready.
+  ══════════════════════════════════════ -->
+  <div class="ad-banner" id="ad-banner-top" style="display:none; padding-top:12px;">
+    <div class="ad-inner">
+      <span class="ad-label">Ad</span>
+      <!-- ============================================================
+        📢 ADSTERRA BANNER SLOT 1
+        → Paste your Adsterra banner <script> or <ins> tag here ⬇️
+        → This banner auto-shows 5 seconds after page load
+        → Recommended size: 320x50 (mobile leaderboard)
+      ============================================================ -->
+      <div id="adsterra-banner-1" style="min-height:50px; min-width:280px;">
+        <!-- ADSTERRA_BANNER_1_PLACEHOLDER -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+    LOADING STATE
+  ══════════════════════════════════════ -->
+  <div class="loading-wrap" id="loading-state">
+    <div class="spinner"></div>
+    <div class="loading-text">Fetching papers...</div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+    EMPTY STATE
+  ══════════════════════════════════════ -->
+  <div class="empty-state" id="empty-state">
+    <div class="empty-icon">🔍</div>
+    <div class="empty-title">No papers found</div>
+    <div class="empty-sub">Try a different search or filter.<br/>More papers added every week.</div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+    CARDS GRID — populated by JavaScript
+  ══════════════════════════════════════ -->
+  <div class="cards-grid" id="cards-grid"></div>
+
+  <!-- ══════════════════════════════════════
+    AD BANNER 2 — shown after search fires
+    REPLACE inner content with HilltopAds
+    banner script when ready.
+  ══════════════════════════════════════ -->
+  <div class="ad-banner" id="ad-banner-mid" style="display:none; padding-bottom: 16px;">
+    <div class="ad-inner">
+      <span class="ad-label">Ad</span>
+      <!-- ============================================================
+        📢 HILLTOPADS BANNER SLOT 2
+        → Paste your HilltopAds banner <script> or <ins> tag here ⬇️
+        → This banner appears only after a search is performed
+        → Recommended size: 300x250 (medium rectangle) or 320x50
+      ============================================================ -->
+      <div id="hilltopads-banner-2" style="min-height:50px; min-width:280px;">
+        <!-- HILLTOPADS_BANNER_2_PLACEHOLDER -->
+      </div>
+    </div>
+  </div>
+
+</div><!-- /#app -->
+
+<!-- ── SCROLL TO TOP BUTTON ── -->
+<button id="scroll-top" aria-label="Scroll to top">↑</button>
+
+<!-- ── STICKY FOOTER ── -->
+<footer class="site-footer">
+  <div class="footer-text">
+    PastPapers.KE &nbsp;·&nbsp; For Kenyan students, by Kenyan students
+    &nbsp;·&nbsp; <a href="mailto:admin@pastpapers.ke">Contact</a>
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════════════════════════════════
+  SPIDER WEB BACKGROUND — pure canvas, no libraries, lightweight
+══════════════════════════════════════════════════════════════════ -->
+<script>
+(function () {
+  const canvas = document.getElementById('web-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, nodes, edges;
+
+  const NODE_COUNT = window.innerWidth < 500 ? 28 : 45;
+  const COLOR = '#10b981';
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    init();
+  }
+
+  function init() {
+    nodes = [];
+    edges = [];
+    for (let i = 0; i < NODE_COUNT; i++) {
+      nodes.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+      });
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    // Move nodes
+    nodes.forEach(n => {
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < 0 || n.x > W) n.vx *= -1;
+      if (n.y < 0 || n.y > H) n.vy *= -1;
+    });
+
+    // Draw edges for nearby nodes
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x;
+        const dy = nodes[i].y - nodes[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const maxDist = window.innerWidth < 500 ? 130 : 160;
+        if (dist < maxDist) {
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.strokeStyle = COLOR;
+          ctx.globalAlpha = 1 - dist / maxDist;
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Draw nodes
+    ctx.globalAlpha = 0.7;
+    nodes.forEach(n => {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, 1.5, 0, Math.PI * 2);
+      ctx.fillStyle = COLOR;
+      ctx.fill();
+    });
+
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
+})();
+</script>
+
+
+<!-- ══════════════════════════════════════════════════════════════════
+  MAIN APP LOGIC
+══════════════════════════════════════════════════════════════════ -->
+<script>
+(function () {
+  'use strict';
+
+  // ══════════════════════════════════════════════════
+  // ⚙️  CONFIG — update these when you're ready
+  // ══════════════════════════════════════════════════
+
+  const CONFIG = {
+
+    // DATA SOURCE
+    // At launch: 'local' reads from papers.json in the same repo (free, fast)
+    // Later:     'atlas' to switch to MongoDB Atlas Data API
+    dataSource: 'local',
+
+    // LOCAL JSON — path relative to index.html
+    localJsonUrl: './papers.json',
+
+    // ============================================================
+    // 🗄️  MONGODB ATLAS DATA API — fill in when ready
+    // Steps:
+    //   1. Go to MongoDB Atlas → App Services → Data API
+    //   2. Create a Read-Only API key (NOT your admin key)
+    //   3. Paste values below
+    // ============================================================
+    atlasEndpoint:  'https://data.mongodb-api.com/app/YOUR_APP_ID/endpoint/data/v1/action/find',
+    atlasApiKey:    'PASTE_YOUR_READ_ONLY_API_KEY_HERE',   // ← REPLACE THIS
+    atlasDataSource:'YOUR_CLUSTER_NAME',                    // ← e.g. "Cluster0"
+    atlasDatabase:  'examhub_db',                          // ← your DB name
+    atlasCollection:'papers',                              // ← your collection name
+
+  };
+
+  // ══════════════════════════════════════════════════
+  // STATE
+  // ══════════════════════════════════════════════════
+  let allPapers     = [];
+  let activeFilter  = 'all';
+  let activeSchool  = 'all';
+  let searchQuery   = '';
+  let debounceTimer = null;
+  let searchHasFired = false;
+
+  // DOM refs
+  const grid         = document.getElementById('cards-grid');
+  const loadingState = document.getElementById('loading-state');
+  const emptyState   = document.getElementById('empty-state');
+  const searchInput  = document.getElementById('search-input');
+  const searchClear  = document.getElementById('search-clear');
+  const resultsCount = document.getElementById('results-count');
+  const totalBadge   = document.getElementById('total-badge');
+  const adBannerTop  = document.getElementById('ad-banner-top');
+  const adBannerMid  = document.getElementById('ad-banner-mid');
+  const scrollTopBtn = document.getElementById('scroll-top');
+
+  // ══════════════════════════════════════════════════
+  // FETCH PAPERS
+  // ══════════════════════════════════════════════════
+  async function fetchPapers() {
+    try {
+      if (CONFIG.dataSource === 'local') {
+        // ── LOCAL JSON (launch mode) ──
+        const res = await fetch(CONFIG.localJsonUrl);
+        if (!res.ok) throw new Error('Failed to load papers.json');
+        allPapers = await res.json();
+
+      } else {
+        // ── MONGODB ATLAS DATA API (scale mode) ──
+        // This is a Read-Only POST to the /action/find endpoint.
+        // No admin credentials are embedded — only the read-only API key.
+        const res = await fetch(CONFIG.atlasEndpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type':  'application/json',
+            'api-key':        CONFIG.atlasApiKey,   // Read-only key only
+          },
+          body: JSON.stringify({
+            dataSource: CONFIG.atlasDataSource,
+            database:   CONFIG.atlasDatabase,
+            collection: CONFIG.atlasCollection,
+            filter:     {},           // fetch all; filtering is done client-side
+            limit:      500,          // safety cap
+          }),
+        });
+
+        if (!res.ok) throw new Error(`Atlas API error: ${res.status}`);
+        const data = await res.json();
+        allPapers = data.documents || [];
+      }
+
+      // Update header badge
+      totalBadge.textContent = `${allPapers.length} papers`;
+
+      loadingState.style.display = 'none';
+      renderCards();
+
+    } catch (err) {
+      console.error('PastPapers KE — fetch error:', err);
+      loadingState.innerHTML = `
+        <div style="text-align:center; padding:20px 16px;">
+          <div style="font-size:2rem; margin-bottom:8px;">⚠️</div>
+          <div style="font-size:0.85rem; color:#94a3b8;">Could not load papers.<br/>Check connection and try again.</div>
+          <button onclick="location.reload()" style="margin-top:14px; padding:8px 18px; background:#10b981; color:#022c22; border:none; border-radius:8px; font-size:0.8rem; font-weight:600; cursor:pointer;">Retry</button>
+        </div>
+      `;
+    }
+  }
+
+  // ══════════════════════════════════════════════════
+  // FILTER + SEARCH LOGIC
+  // ══════════════════════════════════════════════════
+  function getFilteredPapers() {
+    return allPapers.filter(p => {
+
+      // Test type filter
+      if (activeFilter !== 'all') {
+        const type = (p.test_type || '').toLowerCase();
+        if (activeFilter === 'cat'    && !type.includes('cat'))           return false;
+        if (activeFilter === 'main'   && !type.includes('main'))          return false;
+        if (activeFilter === 'supp'   && !type.includes('supp'))          return false;
+        if (activeFilter === 'retake' && !type.includes('retake'))        return false;
+      }
+
+      // School filter
+      if (activeSchool !== 'all') {
+        if ((p.school || '') !== activeSchool) return false;
+      }
+
+      // Search query — matches course name or school
+      if (searchQuery) {
+        const q = searchQuery.toLowerCase();
+        const inName   = (p.course_name || '').toLowerCase().includes(q);
+        const inSchool = (p.school || '').toLowerCase().includes(q);
+        if (!inName && !inSchool) return false;
+      }
+
+      return true;
+    });
+  }
+
+  // ══════════════════════════════════════════════════
+  // RENDER CARDS
+  // ══════════════════════════════════════════════════
+  function renderCards() {
+    const papers = getFilteredPapers();
+
+    // Update count
+    resultsCount.innerHTML = `<span>${papers.length}</span> paper${papers.length !== 1 ? 's' : ''} found`;
+
+    if (papers.length === 0) {
+      grid.innerHTML = '';
+      emptyState.style.display = 'block';
+      adBannerMid.style.display = 'none';
+      return;
+    }
+
+    emptyState.style.display = 'none';
+
+    grid.innerHTML = papers.map((p, i) => buildCard(p, i)).join('');
+
+    // Show mid-ad after search fires (not on initial load)
+    if (searchHasFired) {
+      adBannerMid.style.display = 'block';
+    }
+  }
+
+  // ══════════════════════════════════════════════════
+  // BUILD SINGLE CARD HTML
+  // ══════════════════════════════════════════════════
+  function buildCard(p, index) {
+    const school    = p.school || 'General';
+    const badgeClass = getBadgeClass(school);
+    const typeClass  = getTypeClass(p.test_type || '');
+    const typeLabel  = p.test_type || 'Paper';
+    const year       = p.year || '—';
+    const sem        = p.semester || '';
+    const hasScheme  = p.has_marking_scheme;
+
+    // ════════════════════════════════════════════════
+    // 📎 PDF LINK BUILDER
+    // The download_url from the database is wrapped inside
+    // your ad network smartlink URL below.
+    //
+    // HOW IT WORKS:
+    //   1. Student clicks "Get PDF"
+    //   2. Browser opens the smartlink URL
+    //   3. Ad fires (you earn) → student lands on PDF
+    //
+    // TO ACTIVATE:
+    //   Replace 'YOUR_SMARTLINK_URL_HERE' with your
+    //   actual Adsterra or HilltopAds smartlink URL.
+    //   Example: 'https://adstera.com/s/abc123'
+    //
+    // TO DISABLE (direct PDF links, no ad):
+    //   Set SMARTLINK_URL = '' (empty string)
+    // ════════════════════════════════════════════════
+    const SMARTLINK_URL = '';  // ← PASTE YOUR SMARTLINK HERE (or leave empty)
+
+    // Build the final href for the button
+    let pdfHref = p.download_url || '#';
+    if (SMARTLINK_URL && pdfHref !== '#') {
+      // Appends the PDF URL as a redirect param after the smartlink fires
+      pdfHref = `${SMARTLINK_URL}?url=${encodeURIComponent(pdfHref)}`;
+    }
+
+    const animDelay = `animation-delay: ${index * 0.04}s;`;
+
+    return `
+      <div class="paper-card" style="${animDelay}">
+        <div class="card-top">
+          <span class="school-badge ${badgeClass}">${school}</span>
+          <span class="type-pill ${typeClass}">${typeLabel}</span>
+        </div>
+
+        <div class="course-name">${escHtml(p.course_name || 'Untitled Paper')}</div>
+
+        <div class="card-meta">
+          <span class="meta-item">${year}</span>
+          ${sem ? `<span class="meta-dot"></span><span class="meta-item">${escHtml(sem)}</span>` : ''}
+          ${hasScheme ? `<span class="meta-dot"></span><span class="scheme-tag">✓ Marking Scheme</span>` : ''}
+        </div>
+
+        <a
+          href="${escHtml(pdfHref)}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="get-pdf-btn"
+          aria-label="Download ${escHtml(p.course_name)} PDF"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Get PDF
+        </a>
+      </div>
+    `;
+  }
+
+  // ══════════════════════════════════════════════════
+  // HELPERS
+  // ══════════════════════════════════════════════════
+  function escHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function getBadgeClass(school) {
+    const s = school.toLowerCase();
+    if (s.includes('engineer'))   return 'badge-engineering';
+    if (s.includes('medicine') || s.includes('medical')) return 'badge-medicine';
+    if (s.includes('education'))  return 'badge-education';
+    if (s.includes('biological')) return 'badge-biological';
+    if (s.includes('technology') || s.includes('computing')) return 'badge-technology';
+    if (s.includes('agricultural') || s.includes('agri')) return 'badge-agricultural';
+    return 'badge-technology';
+  }
+
+  function getTypeClass(type) {
+    const t = type.toLowerCase();
+    if (t.includes('cat'))    return 'cat';
+    if (t.includes('main'))   return 'main';
+    if (t.includes('supp'))   return 'supp';
+    if (t.includes('retake')) return 'retake';
+    return '';
+  }
+
+  // ══════════════════════════════════════════════════
+  // EVENT LISTENERS
+  // ══════════════════════════════════════════════════
+
+  // Search — 400ms debounce to limit API calls
+  searchInput.addEventListener('input', () => {
+    searchQuery = searchInput.value.trim();
+    searchClear.style.display = searchQuery ? 'block' : 'none';
+
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      searchHasFired = true;
+      renderCards();
+    }, 400);
+  });
+
+  // Clear search
+  searchClear.addEventListener('click', () => {
+    searchInput.value = '';
+    searchQuery = '';
+    searchClear.style.display = 'none';
+    searchInput.focus();
+    renderCards();
+  });
+
+  // Test type filter tabs
+  document.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.filter-tab').forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      activeFilter = tab.dataset.filter;
+      renderCards();
+    });
+  });
+
+  // School filter tabs
+  document.querySelectorAll('.school-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.school-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      activeSchool = tab.dataset.school;
+      renderCards();
+    });
+  });
+
+  // Scroll to top
+  window.addEventListener('scroll', () => {
+    scrollTopBtn.classList.toggle('show', window.scrollY > 300);
+  }, { passive: true });
+
+  scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // ══════════════════════════════════════════════════
+  // AD TIMING
+  // Top banner: shows 5 seconds after page load
+  // (feels natural, not an ambush)
+  // ══════════════════════════════════════════════════
+  setTimeout(() => {
+    adBannerTop.style.display = 'block';
+  }, 5000);
+
+  // ══════════════════════════════════════════════════
+  // INIT — load papers on page ready
+  // ══════════════════════════════════════════════════
+  fetchPapers();
+
+})();
+</script>
+
+</body>
+</html>
